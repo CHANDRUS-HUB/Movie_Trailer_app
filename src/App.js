@@ -4,8 +4,7 @@ import ReactPlayer from 'react-player';
 import axios from 'axios';
 
 function App() {
-
-    const [video, setVideo] = useState("a1");  // Default movie
+    const [video, setVideo] = useState("");  // Initialize video with an empty string
     const [videoURL, setVideoURL] = useState("");  // Video URL state
     const [error, setError] = useState(null);  // Error state
 
@@ -13,6 +12,11 @@ function App() {
 
     // Function to search for a movie trailer using the YouTube API
     async function handleSearch() {
+        if (!video.trim()) {
+            setError("Please enter a movie name.");  // Display error if input is empty
+            return;
+        }
+        
         try {
             const res = await axios.get("https://www.googleapis.com/youtube/v3/search", {
                 params: {
@@ -47,7 +51,6 @@ function App() {
                 <h2 className='header'>Movie Trailer App</h2>
 
                 <div className="search-box">
-
                     <label>Search Any Movies & Shows:</label>
                     <input
                         type="text"
@@ -65,7 +68,6 @@ function App() {
                 {videoURL && <ReactPlayer url={videoURL} controls={true} />}
             </div>
         </>
-
     );
 }
 
