@@ -4,7 +4,8 @@ import ReactPlayer from 'react-player';
 import axios from 'axios';
 
 function App() {
-    const [video, setVideo] = useState("inception");  // Default movie
+
+    const [video, setVideo] = useState("a1");  // Default movie
     const [videoURL, setVideoURL] = useState("");  // Video URL state
     const [error, setError] = useState(null);  // Error state
 
@@ -19,7 +20,7 @@ function App() {
                     q: `${video} trailer`,  // Search query, movie name + trailer
                     type: "video",
                     key: API_KEY,
-                    maxResults: 2,  // Limit to the first result
+                    maxResults: 1,  // Limit to the first result
                 }
             });
 
@@ -41,24 +42,30 @@ function App() {
     }
 
     return (
-        <div className="App">
-            <div className="search-box">
-                <label>Search for any movies/shows: </label>
-                <input 
-                    type="text" 
-                    onChange={(e) => setVideo(e.target.value)}  // Update movie name as user types
-                />
-                <button onClick={handleSearch}>
-                    Search
-                </button>
+        <>
+            <div className="App">
+                <h2 className='header'>Movie Trailer App</h2>
+
+                <div className="search-box">
+
+                    <label>Search Any Movies & Shows:</label>
+                    <input
+                        type="text"
+                        onChange={(e) => setVideo(e.target.value)}  // Update movie name as user types
+                    />
+                    <button onClick={handleSearch}>
+                        Search
+                    </button>
+                </div>
+
+                {/* Display error message if there's an issue */}
+                {error && <div style={{ color: 'red' }}>{error}</div>}
+
+                {/* Display video if URL is available */}
+                {videoURL && <ReactPlayer url={videoURL} controls={true} />}
             </div>
+        </>
 
-            {/* Display error message if there's an issue */}
-            {error && <div style={{ color: 'red' }}>{error}</div>}
-
-            {/* Display video if URL is available */}
-            {videoURL && <ReactPlayer url={videoURL} controls={true} />}
-        </div>
     );
 }
 

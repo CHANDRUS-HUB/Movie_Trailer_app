@@ -45,5 +45,13 @@ button {
 }
 
 button:hover {
-  background-color :aqua; /* Darker blue on hover */
+  background-color: #0056b3; /* Slightly darker blue for a professional look */
+}
+
+h2 {
+  margin-bottom: 15px; /* Adjusted margin for better spacing */
+  margin-top: 0;
+  align-content: center;
+  background-color: #f4f7f6;
+
 }
