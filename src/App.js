@@ -14,6 +14,7 @@ function App() {
     async function handleSearch() {
         if (!video.trim()) {
             setError("Please enter a movie name.");  // Display error if input is empty
+            setVideoURL(null);  // Clear the video if the input is empty
             return;
         }
         
@@ -54,6 +55,7 @@ function App() {
                     <label>Search Any Movies & Shows:</label>
                     <input
                         type="text"
+                        value={video}  // Bind the value of the input to the video state
                         onChange={(e) => setVideo(e.target.value)}  // Update movie name as user types
                     />
                     <button onClick={handleSearch}>
