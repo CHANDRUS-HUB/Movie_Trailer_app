@@ -4,20 +4,19 @@ import ReactPlayer from 'react-player';
 import axios from 'axios';
 
 function App() {
-    const [video, setVideo] = useState("");  // Initialize video with an empty string
-    const [videoURL, setVideoURL] = useState("");  // Video URL state
-    const [error, setError] = useState(null);  // Error state
+    const [video, setVideo] = useState(""); 
+    const [videoURL, setVideoURL] = useState("");  
+    const [error, setError] = useState(null);  
 
-    const API_KEY = "AIzaSyDCRYJ5vADVXyRxvQEyXOtzeqPF9ZXhpuM";  // Replace with your YouTube API key
+    const API_KEY = "AIzaSyDCRYJ5vADVXyRxvQEyXOtzeqPF9ZXhpuM";  
 
-    // Function to search for a movie trailer using the YouTube API
     async function handleSearch() {
         if (!video.trim()) {
-            setError("Please enter a movie name.");  // Display error if input is empty
-            setVideoURL(null);  // Clear the video if the input is empty
+            setError("Please enter a movie name."); 
+            setVideoURL(null);  
             return;
         }
-        
+
         try {
             const res = await axios.get("https://www.googleapis.com/youtube/v3/search", {
                 params: {
