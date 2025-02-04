@@ -21,26 +21,26 @@ function App() {
             const res = await axios.get("https://www.googleapis.com/youtube/v3/search", {
                 params: {
                     part: "snippet",
-                    q: `${video} trailer`,  // Search query, movie name + trailer
+                    q: `${video} trailer`,  
                     type: "video",
                     key: API_KEY,
-                    maxResults: 1,  // Limit to the first result
+                    maxResults: 1, 
                 }
             });
 
-            // Extract the video ID from the API response
+           
             if (res.data.items.length > 0) {
                 const videoId = res.data.items[0].id.videoId;
                 const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
-                setVideoURL(videoUrl);  // Set the video URL
-                setError(null);  // Clear any previous errors
+                setVideoURL(videoUrl); 
+                setError(null);  
             } else {
-                setError("Trailer not found. Try another movie.");  // If no trailer is found
+                setError("Trailer not found. Try another movie.");  
                 setVideoURL(null);
             }
 
         } catch (err) {
-            setError("Error fetching trailer. Please try again.");  // Catch any API errors
+            setError("Error fetching trailer. Please try again."); 
             setVideoURL(null);
         }
     }
@@ -54,8 +54,8 @@ function App() {
                     <label>Search Any Movies & Shows:</label>
                     <input
                         type="text"
-                        value={video}  // Bind the value of the input to the video state
-                        onChange={(e) => setVideo(e.target.value)}  // Update movie name as user types
+                        value={video} 
+                        onChange={(e) => setVideo(e.target.value)}  
                     />
                     <button onClick={handleSearch}>
                         Search
